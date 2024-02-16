@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Prediction Web App</title>
+</head>
+<body>
+    <h1>Flood Prediction Web App</h1>
+    <form action="/predict" method="post">
+        <label for="rainfall">Enter Rainfall:</label>
+        <input type="text" name="rainfall" required><br>
+
+        <label for="temperature">Enter Temperature:</label>
+        <input type="text" name="temperature" required><br>
+
+        <label for="river_water_level">Enter River Water Level:</label>
+        <input type="text" name="river_water_level" required><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction is defined %}
+        <h2>Prediction Result:</h2>
+        {% if prediction == 1 %}
+            <p>Prediction: Flood: Yes</p>
+        {% else %}
+            <p>Prediction: Flood: No</p>
+        {% endif %}
+        <p>Probability of flood occurrence: {{ probability|round(2) }}</p>
+    {% endif %}
+</body>
+</html>
